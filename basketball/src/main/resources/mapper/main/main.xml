@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.MainDao">
+
+
+    <resultMap id="Team" type="com.bean.Team">
+        <id column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="Player" type="com.bean.Player">
+        <id column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="student_number" property="student_number" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="VARCHAR"/>
+        <result column="date_birth" property="date_birth" jdbcType="VARCHAR"/>
+        <result column="be_long_team" property="be_long_team" jdbcType="VARCHAR"/>
+        <result column="uniform_number" property="uniform_number" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+
+    <resultMap id="Game" type="com.bean.Game">
+        <id column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="home_name" property="home_name" jdbcType="VARCHAR"/>
+        <result column="home_score" property="home_score" jdbcType="VARCHAR"/>
+        <result column="guest_name" property="guest_name" jdbcType="VARCHAR"/>
+        <result column="guest_score" property="guest_score" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="Count" type="com.bean.Count">
+        <id column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="lan" property="lan" jdbcType="VARCHAR"/>
+        <result column="zhu" property="zhu" jdbcType="VARCHAR"/>
+        <result column="san" property="san" jdbcType="VARCHAR"/>
+        <result column="qiang" property="qiang" jdbcType="VARCHAR"/>
+        <result column="gai" property="gai" jdbcType="VARCHAR"/>
+        <result column="shi" property="shi" jdbcType="VARCHAR"/>
+        <result column="fan" property="fan" jdbcType="VARCHAR"/>
+        <result column="be_game" property="be_game" jdbcType="VARCHAR"/>
+        <result column="be_team" property="be_team" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="User" type="com.bean.User">
+        <id column="id" property="id" jdbcType="DECIMAL"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="getTeamCount" resultType="Integer">
+        select count(*) from b_ball_team
+    </select>
+
+    <select id="listTeam" resultMap="Team">
+        select * from b_ball_team
+    </select>
+
+    <delete id="deleteTeam">
+
+        delete from b_ball_team where id=#{id}
+
+    </delete>
+
+    <select id="getTeamOne" resultMap="Team">
+
+        select * from b_ball_team where id=#{id}
+    </select>
+
+    <!--分页查询-->
+    <select id="pageAllTeam" resultMap="Team">
+        select * from b_ball_team
+        <where>
+            <if test="name!=null and name!=''">
+                name=#{name}
+            </if>
+
+        </where>
+        order BY id desc limit #{pageStart},#{pageSize}
+    </select>
+
+    <update id="updateTeam">
+
+        update b_ball_team set name=#{name},address=#{address},remark=#{remark} where id=#{id}
+    </update>
+
+    <insert id="addTeam">
+
+        INSERT into b_ball_team(name,address,remark) VALUES (#{name},#{address},#{remark})
+
+    </insert>
+
+
+
+
+
+
+
+
+
+    <!--球员-->
+    <select id="getPlayerCount" resultType="Integer">
+        select count(*) from b_ball_player
+    </select>
+
+    <select id="pageAllPlayer" resultMap="Player">
+        select * from b_ball_player
+        <where>
+            <if test="name!=null and name!=''">
+                name=#{name}
+            </if>
+            <if test="student_number!=null and student_number!=''">
+              and  student_number=#{student_number}
+            </if>
+        </where>
+        order BY id desc limit #{pageStart},#{pageSize}
+    </select>
+
+    <delete id="deletePlayer">
+
+        delete from b_ball_player where id=#{id}
+
+    </delete>
+
+    <select id="getPlayerOne" resultMap="Player">
+
+        select * from b_ball_player where id=#{id}
+    </select>
+
+
+    <select id="listPlayer" resultMap="Player">
+
+        select * from b_ball_player where be_long_team=#{home_name} or be_long_team=#{guest_name}
+    </select>
+
+
+    <update id="updatePlayer">
+
+        update b_ball_player set name=#{name},student_number=#{student_number},sex=#{sex},age=#{age},date_birth=#{date_birth},be_long_team=#{be_long_team},uniform_number=#{uniform_number} where id=#{id}
+    </update>
+
+    <insert id="addPlayer">
+
+        INSERT into b_ball_player(name,student_number,sex,age,date_birth,be_long_team,uniform_number) VALUES (#{name},#{student_number},#{sex},#{age},#{date_birth},#{be_long_team},#{uniform_number})
+
+    </insert>
+
+
+
+
+
+
+
+
+
+
+    <!--比赛-->
+    <select id="getGameCount" resultType="Integer">
+        select count(*) from b_ball_game
+    </select>
+
+    <select id="pageAllGame" resultMap="Game">
+        select * from b_ball_game
+        <where>
+            <if test="home_name!=null and home_name!=''">
+                home_name=#{home_name}
+            </if>
+            <if test="guest_name!=null and guest_name!=''">
+                and  guest_name=#{guest_name}
+            </if>
+        </where>
+        order BY id desc limit #{pageStart},#{pageSize}
+    </select>
+    <delete id="deleteGame">
+
+        delete from b_ball_game where id=#{id}
+
+    </delete>
+
+    <insert id="addGameAdd">
+        INSERT into b_ball_game(home_name,home_score,guest_name,guest_score,status,version) VALUES (#{home_name},#{home_score},#{guest_name},#{guest_score},#{status},#{version})
+    </insert>
+
+    <select id="getOneGame"  resultMap="Game">
+        select * from b_ball_game where id=#{id}
+    </select>
+
+    <update id="updateGameOne">
+
+        update b_ball_game set home_score=#{home_score},guest_score=#{guest_score},status=#{status} where id=#{id}
+
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--技术统计-->
+    <insert id="addCount">
+        INSERT into b_ball_count(
+        name,
+        score,
+        lan,
+        zhu,
+        san,
+        qiang,
+        gai,
+        shi,
+        fan,
+        be_game,
+        be_team) VALUES (
+        #{name},
+        #{score},
+        #{lan},
+        #{zhu},
+        #{san},#{qiang},#{gai},#{shi},#{fan},#{be_game},#{be_team})
+    </insert>
+
+    <select id="findCountByTeam" resultMap="Count">
+
+            select * from b_ball_count where be_game=#{be_game} and be_team=#{be_team} order BY (score*0.7+zhu*0.2+lan*0.1) DESC
+
+    </select>
+
+    <select id="data" resultMap="Count">
+
+        select * from b_ball_count where be_game=#{be_game}
+
+    </select>
+
+
+    <select id="findCountByOne" resultMap="Count">
+
+        select * from b_ball_count where id=#{id}
+
+    </select>
+
+    <update id="updateOneCount">
+
+        update b_ball_count set score=#{score},
+
+        lan=#{lan},
+        zhu=#{zhu},
+        san=#{san},
+        qiang=#{qiang},
+        gai=#{gai},
+        shi=#{shi},
+        fan=#{fan}  where id=#{id}
+
+
+    </update>
+
+
+
+    <select id="MaxScore" resultMap="Count">
+
+        select * from b_ball_count where be_game=#{be_game} ORDER BY score DESC LIMIT 1
+
+    </select>
+
+    <select id="MaxLan" resultMap="Count">
+  select * from b_ball_count where be_game=#{be_game} ORDER BY lan DESC LIMIT 1
+    </select>
+
+    <select id="MaxZhu" resultMap="Count">
+
+      select * from b_ball_count where be_game=#{be_game} ORDER BY zhu DESC LIMIT 1
+    </select>
+
+
+
+    <insert id="insertUser">
+
+        INSERT INTO  b_ball_user(name,pwd) VALUES(#{name},#{pwd})
+    </insert>
+
+
+    <select  id="getUser" resultMap="User">
+
+       select * from b_ball_user where name=#{name} and pwd=#{pwd}
+    </select>
+
+    <select  id="getNameUser" resultMap="User">
+
+        select * from b_ball_user where name=#{name}
+    </select>
+
+</mapper>

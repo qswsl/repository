@@ -1,0 +1,280 @@
+.bg2{
+	background-color: #d93622;
+	
+}
+.hide{
+	display: none;
+}
+.main_red{
+	background: url(../img/page2_bg.png) no-repeat;
+	background-size: 100% 3.72rem;
+}
+/* 大转盘样式 */
+.turnArea{
+	position: relative;
+	margin-top: 0.2rem;
+	width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.55rem;
+}
+
+.turnplate{
+	z-index: 60;
+	width: 90%;
+	height: 260px;
+	display: block;
+    margin: auto;
+   	position: absolute;
+   	left: 50%;
+   	transform: translateX(-50%);
+   	top: 0;
+	background: url(../img/page2_turnbg.png)0 0 no-repeat;
+	background-size:100% 100%;
+}
+
+.turnArea .turnplate canvas.item {
+	width: 100%;
+}
+.turnplate img.pointer {
+	position: absolute;
+	width: 1.24rem;
+	height: 1.33rem;
+	left: 38%;
+	top: 37%;
+}
+.group_btn1{
+	display: flex;
+	width: 5.15rem;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: space-between;
+	
+}
+.recond1_btn img,.act1_btn img{
+	width: 2.08rem;
+	height: 0.74rem;
+}
+.content_turn{
+	overflow: hidden;
+	padding-bottom: 2rem;
+	background-image: url(../img/page2_body.png);
+	background-size: 100% 3.62rem;
+	background-position: left bottom;
+	background-repeat: no-repeat;
+}
+
+.recond_show{
+	padding-top: 0.25rem;
+	padding-bottom: 0.1rem;
+	width: 5.45rem;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff0ce;
+	border-radius: 0.08rem;
+
+}
+.recond_title{
+	
+	
+	width: 100%;
+	height: 0.67rem;
+	line-height: 0.67rem;
+	background-color: rgb( 245, 207, 118 );
+	display: flex;
+	border-top-left-radius: 0.08rem;
+	border-top-right-radius: 0.08rem;
+}
+.recond_title span{
+	font-family: 兰亭黑体;
+	font-size: 0.28rem;
+	color: #55350c;
+	text-align: center;
+	height: 0.67rem;
+	line-height: 0.67rem;
+}
+.recond_title span:first-child{
+	width: 30%;
+}
+.recond_title span:last-child{
+	width: 25%;
+}
+.recond_title span:nth-child(2){
+	width: 45%;
+}
+
+.recond_list{
+	padding-bottom:0.1rem ;
+	height: 4.28rem;
+	overflow: scroll;
+	padding-left: 0;
+}
+.recond_list li{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	height: 0.8rem;
+	justify-content: space-around;
+	border-bottom: 1px dashed #ee5f50;
+}
+.recond_list li span{
+	align-self: center;
+	line-height: 0.3rem;
+	font-size: 0.22rem;
+	color: #d93622;
+	text-align: center;
+}
+.recond_list li span:first-child{
+	width: 30%;
+}
+.recond_list li span:last-child{
+	width: 25%;
+}
+.recond_list li span:nth-child(2){
+	width: 45%;
+}
+.recond_list::-webkit-scrollbar {
+    display: none;
+}
+/*弹窗*/
+.popbg{
+	position: absolute;
+	background: rgba(0,0,0,0.8);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+}
+.popshow{
+	padding:0.6rem 0.35rem 0.9rem 0.35rem;
+	position: relative;
+	top: 2.9rem;
+	width: 5rem;
+	height: 5.58rem;	
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 0.08rem;
+	background: url(../img/page2_popbg.png) no-repeat;
+	background-size: 100% 100%;
+}
+.pop_title{
+	margin-bottom: 0.5rem;
+	text-align: center;
+	color: #d93622;
+	font-size: 0.3rem;
+	margin-bottom: 0.28rem;
+	font-family: 方正准圆简体;
+}
+.login_info{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.login_info input{
+	padding-left: 0.2rem;
+	padding-top: 0.12rem;
+	padding-bottom: 0.12rem;
+	margin-bottom: 0.18rem;
+	width: 100%;
+	border: 1px solid rgb( 217, 54, 34 );
+	background-color: rgb( 255, 245, 222 );
+	outline: none;
+	font-size: 0.24rem;
+	color: rgb( 217, 54, 34 );
+	border-radius: 0.3rem;
+}
+
+
+.login_info input::-webkit-input-placeholder{
+	color: rgb( 217, 54, 34 );
+}
+.login_info input.phone_code{
+	width: 2.64rem;
+}
+
+.login_info input.code_pic{
+	padding-left: 0;
+	text-align: center;
+	background-color: #f6c655;
+	font-size: 0.22rem;
+	width: 1.45rem;
+	border: none;
+}
+.login_info input.code_key{
+	margin-bottom: 0;
+}
+.login_info div.login_btn{
+	width: 100%;
+	height: 0.62rem;
+	line-height: 0.62rem;
+	background-color: rgb( 217, 54, 34 );
+	color: #ffffff;
+	border-radius: 0.3rem;
+	text-align: center;
+	margin-top: .45rem;
+}
+.popclose {
+	position: absolute;
+	right: 0.18rem;
+	top:-0.89rem
+}
+.popclose img{
+	width: 0.54rem;
+	height: 0.89rem;
+}
+.pop_list{
+	height: 3.8rem;
+	overflow: scroll;
+}
+.pop_list::-webkit-scrollbar {
+    display: none;
+}
+
+
+.popshowPrize{
+	padding:0.6rem 0.35rem 0.9rem 0.35rem;
+	position: relative;
+	top: 2.9rem;
+	width: 5rem;
+	height: 2.40rem;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 0.08rem;
+	background: url(../img/remind_bger.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.write_find{
+	margin-bottom: 0.18rem;
+	width: 5.2rem;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: space-between;
+}
+.write_find input:first-child{
+	padding-left: 0.2rem;
+	border-radius:0.08rem ;
+	padding-bottom: 0.12rem;
+	padding-top: 0.12rem;
+	font-size: 0.23rem;
+	width: 3.7rem;
+	background-color: #fff8e9;
+	border: 1px solid #ee2315;
+	color: #ee2315;
+}
+.write_find input:first-child::-webkit-input-placeholder{
+	color: #ee2315;
+}
+.write_find input:last-child{
+	width: 1.4rem;
+	font-size: 0.23rem;
+	border: none;
+	border-radius: 0.08rem;
+	padding-bottom: 0.12rem;
+	padding-top: 0.12rem;
+	color: #FFFFFF;
+	text-align: center;
+	background: #ee2315;
+}
